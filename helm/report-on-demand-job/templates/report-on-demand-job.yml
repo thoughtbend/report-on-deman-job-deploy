@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{.Values.job.name}}
+spec:
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+  template:
+    spec:
+      containers:
+      - name: {{.Values.job.name}}
+        image: mnolan98/{{.Values.job.imageName}}:{{.Values.job.imageVersion}}
+        command: ["java","-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/app.jar", "2000"]
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Never

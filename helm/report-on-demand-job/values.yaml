@@ -1,0 +1,4 @@
+job:
+  name: report-on-demand-job
+  imageName: report-on-demand-job
+  imageVersion: 0.0.3
