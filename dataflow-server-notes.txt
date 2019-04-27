@@ -1,0 +1,18 @@
+#following article https://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/current/reference/htmlsingle/#_helm_installation
+# https://docs.spring.io/spring-cloud-task/docs/2.0.0.RELEASE/reference/htmlsingle/#getting-started
+
+kubectl create namespace spring-df
+
+kubectl -n spring-df create -f src/kubernetes/rabbitmq/
+kubectl -n spring-df create -f src/kubernetes/kafka/
+kubectl -n spring-df create -f src/kubernetes/mysql/
+
+kubectl -n spring-df get all 
+kubectl -n spring-df get all -l app=rabbitmq
+kubectl -n spring-df get all -l app=kafka
+kubectl -n spring-df get all -l app=mysql
+
+
+kubectl -n spring-df delete all,pvc,secrets -l app=mysql
+kubectl -n spring-df delete all -l app=kafka
+kubectl -n spring-df delete all -l app=rabbitmq
